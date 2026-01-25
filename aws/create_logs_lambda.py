@@ -1,5 +1,6 @@
 import boto3
 
+
 logs = boto3.client('logs', region_name='us-east-1')
 lmb = boto3.client('lambda', region_name='us-east-1')
 
@@ -27,4 +28,3 @@ def conectar_logs_ao_lambda():
 
 if __name__ == "__main__":
     conectar_logs_ao_lambda()
-    

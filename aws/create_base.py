@@ -9,7 +9,7 @@ sns = boto3.client('sns', region_name=region)
 logs = boto3.client('logs', region_name=region)
 
 def criar_base():
-    # 1. DynamoDB: Tabela de Incidentes [cite: 8, 32]
+    # 1. DynamoDB: Tabela de Incidentes
     try:
         dynamodb.create_table(
             TableName='Incidents',
@@ -20,18 +20,18 @@ def criar_base():
         print("Tabela DynamoDB criada.")
     except: print("Tabela DynamoDB já existe.")
 
-    # 2. SNS: Tópico de Alertas [cite: 9, 31]
+    # 2. SNS: Tópico de Alertas
     topic = sns.create_topic(Name='LogAlerts')
     print(f"Tópico SNS: {topic['TopicArn']}")
 
-    # 3. CloudWatch: Log Group para a FastAPI [cite: 6, 21]
+    # 3. CloudWatch: Log Group para a FastAPI
     try:
         logs.create_log_group(logGroupName='fastapi-logs')
         logs.put_retention_policy(logGroupName='fastapi-logs', retentionInDays=1)
         print("Log Group criado.")
     except: print("Log Group já existe.")
 
-    # 4. IAM: Role do Lambda [cite: 20]
+    # 4. IAM: Role do Lambda
     policy = {
         "Version": "2012-10-17",
         "Statement": [{"Effect": "Allow", "Principal": {"Service": "lambda.amazonaws.com"}, "Action": "sts:AssumeRole"}]
