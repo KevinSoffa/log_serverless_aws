@@ -8,6 +8,13 @@ Projeto de **observabilidade serverless** desenvolvido em **Python**, utilizando
 
 Todo o provisionamento e integração com a AWS foi feito **programaticamente via boto3**, sem uso de Console ou IaC externos (Terraform / CloudFormation), reforçando o domínio da SDK da AWS em Python.
 
+<img height="55em" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" />
+
+<img height="55em" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" />
+
+<img height="55em" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" />
+
+
 ---
 
 ## 🎯 Objetivo do Projeto
@@ -191,7 +198,19 @@ Este projeto demonstra:
 Ideal para **portfólio técnico** e estudos avançados em cloud.
 
 ---
+## ▶️ Exemplo
 
+### Table Incidents
+<div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/log_serverless_aws/refs/heads/master/imagens_logs/table_incidents.png"/>
+</div>
+
+### Lambda
+<div align="center">
+  <img src="https://raw.githubusercontent.com/KevinSoffa/log_serverless_aws/refs/heads/master/imagens_logs/lambda.png"/>
+</div>
+
+---
 👨‍💻 **Autor**: Kevin Soffa
 
 📎 Projeto desenvolvido para fins educacionais e demonstração técnica.
