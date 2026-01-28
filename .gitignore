@@ -175,6 +175,6 @@ pyrightconfig.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 
-/imagens_logs
+
 /aws/lambda/lambda_function.zip
 /aws/lambda_function.zip
