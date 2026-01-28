@@ -11,16 +11,16 @@ import uuid
 dynamodb = boto3.resource('dynamodb')
 sns = boto3.client('sns')
 
-# Configurações (Ajuste o ARN do SNS após rodar o Script 1)
+
 TABLE_NAME = 'Incidents'
 SNS_TOPIC_ARN = config("SNS-TOPIC-ARN")
 
 def lambda_handler(event, context):
     """
-    Recebe eventos do CloudWatch via Subscription Filter[cite: 28].
-    Filtra logs com nível ERROR[cite: 29].
-    Salva incidentes no DynamoDB[cite: 30].
-    Publica alertas no SNS[cite: 31].
+    Recebe eventos do CloudWatch via Subscription Filter
+    Filtra logs com nível ERROR
+    Salva incidentes no DynamoDB.
+    Publica alertas no SNS.
     """
     
     # 1. Decodificar e descompactar os dados do CloudWatch
@@ -35,10 +35,10 @@ def lambda_handler(event, context):
     
     for log_event in payload['logEvents']:
         try:
-            # Tenta ler a mensagem como JSON (log estruturado da FastAPI) [cite: 5, 22]
+            # Tenta ler a mensagem como JSON (log estruturado da FastAPI)
             log_content = json.loads(log_event['message'])
             
-            # 2. Filtrar logs com nível ERROR [cite: 29]
+            # 2. Filtrar logs com nível ERROR
             if log_content.get('level') == 'ERROR':
                 incident_id = str(uuid.uuid4())
                 
@@ -51,10 +51,10 @@ def lambda_handler(event, context):
                     'timestamp': datetime.now().isoformat()
                 }
                 
-                # 3. Salvar incidente no DynamoDB [cite: 8, 30]
+                # 3. Salvar incidente no DynamoDB
                 table.put_item(Item=incident)
                 
-                # 4. Disparar alerta em tempo real via SNS [cite: 9, 31]
+                # 4. Disparar alerta em tempo real via SNS
                 sns.publish(
                     TopicArn=SNS_TOPIC_ARN,
                     Subject=f"ALERTA: Erro em {incident['service']}",
